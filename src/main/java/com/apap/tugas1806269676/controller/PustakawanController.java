@@ -104,7 +104,7 @@ public class PustakawanController {
 	private String deletePilot(@PathVariable(value = "id") long id, Model model) {
 			PustakawanModel pustakawan = pustakawanService.getPustakawanById(id);
 			model.addAttribute("pustakawan", pustakawan);
-			String navigation = "Hapus Pilot";
+			String navigation = "Hapus Pustakawan";
 			model.addAttribute("navigation", navigation);
 			return "deletepustakawan";
 		}

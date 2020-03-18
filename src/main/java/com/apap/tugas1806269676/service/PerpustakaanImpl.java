@@ -30,5 +30,10 @@ public class PerpustakaanImpl implements PerpustakaanService {
 	public List<PerpustakaanModel> getAllPerpustakaan() {
 		return perpustakaandb.findAll();
 	}
+	
+	@Override
+	public void deletePerpustakaan(long id) {
+		perpustakaandb.deleteById(id);
+	}
 
 }
