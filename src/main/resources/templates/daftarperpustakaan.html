@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Daftar Perpustakaan</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
+           <div class="container">
+           <br>   
+		<h4 align="center">DAFTAR PERPUSTAKAAN</h4>
+		<br>
+        <div class="row">
+            <br> 			
+                <div class="table-responsive">	                  
+                      	<table class="table table-striped">
+						<thead class="thead-dark">
+						<tr>
+							<th width="2%" style="text-align: center">No</th>
+							<th width="30%" style="text-align: center">Lokasi</th>
+							<th width="20%" style="text-align: center">Nama</th>
+							<th width="1%"style="text-align: center">Action</th>
+						</tr>
+						</thead>
+						
+					 	<tbody>
+							<tr  th:each="perpustakaan, i : ${perpustakaan}"> 
+								<td align=Center th:text="${i.count}"></td>
+								<td align=Center  th:text="${perpustakaan.nama}"></td>
+								<td align=Center th:text="${perpustakaan.lokasi}"></td>
+								<td style="padding: 10px;">
+								<a th:href="@{'/perpustakaan/delete/' + ${perpustakaan.id}}">
+								<input "text-align:center" type="button" class="btn btn-danger" value = "Hapus"></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<form th:action = "@{/perpustakaan/tambah}">
+						<button type = "submit" class="btn btn-primary">Tambah Pustakawan</button>
+					</form> 
+					<br>
+        	</div>
+    	</div>        
+	</div>
+</body>
+</html>

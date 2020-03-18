@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Detail Pustakawan</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	    <br>
+	    <div class="container-fluid">	      
+	        <div class="row">
+	            <div class="col-md-4">
+	            	 <div class="card">
+	            	 
+	                    <div class="card-body"> 
+	                    	<div class="form-group">
+						      	
+						    </div>
+								<b>Nama:</b><br>
+								<input class="form-control" type="text" th:field="${pustakawan.nama}" readonly>
+								<br>
+	                            <b>Nip:</b><br>
+	                            <input class="form-control" type="text" th:field="${pustakawan.nip}" readonly>
+								<br>
+	                            <b>Tempat Lahir:</b> <br>
+	                            <input class="form-control" type="text" th:field="${pustakawan.tempat_lahir}" readonly>
+								<br>
+	                            <b>Tanggal Lahir:</b> <br>
+	                            <input class="form-control" type="text" th:field="${pustakawan.tanggal_lahir}" readonly>
+	                            <br>
+	                            <b>Jenis Kelamin:</b> <br>
+								    <span th:if="${pustakawan.jenis_kelamin == 1}">
+								    <input class="form-control" type="text" value="Laki-Laki" readonly></span>
+									<span th:if="${pustakawan.jenis_kelamin == 2}">
+									<input class="form-control" type="text" value="Perempuan" readonly></span>
+	                            <br>                          
+	                            <b>Spesialisasi:</b> <br>
+	                            	<span th:if="${pustakawan.pustakawanSpesialisasi.size() == 0}">
+	                            	<input class="form-control" type="text" value="-" readonly></span>
+									<span th:if="${pustakawan.pustakawanSpesialisasi.size() == 1}"> 
+									<div th:each="spesialisasi : ${pustakawan.pustakawanSpesialisasi}">
+										<input class="form-control" type="text" th:value="${spesialisasi.nama}" readonly></div>
+									</span>
+								<span th:if="${pustakawan.pustakawanSpesialisasi.size() > 1}">
+									<div th:each="spesialisasi : ${pustakawan.pustakawanSpesialisasi}">
+										<span th:if="${spesialisasiStat.index != pustakawan.pustakawanSpesialisasi.size()-1}">
+											<input class="form-control" type="text" th:value="${spesialisasi.nama}" readonly></span>
+										<span th:unless="${spesialisasiStat.index != pustakawan.pustakawanSpesialisasi.size()-1}">
+											<input class="form-control" type="text" th:value="${spesialisasi.nama}" readonly></span>
+									</div>
+								</span>						
+	                           <br><br>						
+	                           <form th:action = "@{/}">
+									<button class="btn btn-secondary" value = "submit">Back</button>
+								</form> 
+	                            <br>
+
+	                     </div>
+                	</div>		        
+	            </div>
+	            <div class="col-md-4"></div>
+	        </div>        
+	    </div>
+	    
+</body>
+</html>

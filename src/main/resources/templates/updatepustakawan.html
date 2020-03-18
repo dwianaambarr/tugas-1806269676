@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Ubah Pustakawan</title>
+	    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+	    <nav th:replace="fragments/fragment :: navbar"></nav>
+	    <br>
+	    <div class="container-fluid">	      
+	        <div class="row">
+	            <div class="col-md-4">
+	            	 <div class="card">
+	                    <div class="card-body"> 
+	                        <form th:action="@{/pustakawan/update/{id} (id=${old.id})}" th:object="${pustakawan}" method="POST">
+	                            Nama: <br>
+	                            <input type="text" name="nama" th:field="${old.nama}" class="form-control"/>
+	                            <br>
+	                            Tempat Lahir: <br>
+	                            <input type="text" name="tempat_lahir" th:field="${old.tempat_lahir}" class="form-control"/>
+	                            <br>
+	                            Tanggal Lahir: <br>
+	                            <input type="date" name="tanggal_lahir" th:field="${old.tanggal_lahir}" class="form-control"/>
+	                            <br>
+	                            Jenis Kelamin: <br>
+	                            <div th:if="${old.jenis_kelamin == 1}"class="form-check form-check-inline">
+	                            	<input  class="form-check-input" type="radio" name="jenis_kelamin" checked="" id="jk1" value="1">
+  									<label class="form-check-label" for="jk_lk">Laki-Laki</label>
+  								</div>
+  								<div th:if="${old.jenis_kelamin == 1}" class="form-check form-check-inline">
+	  								<input class="form-check-input" type="radio" name="jenis_kelamin" id="jk2" value="2">
+	  								<label class="form-check-label" for="jk_pr">Perempuan</label>
+	  							</div>
+	  							<div th:if="${old.jenis_kelamin == 2}" class="form-check form-check-inline">
+	                            	<input  class="form-check-input" type="radio" name="jenis_kelamin" id="jk1" value="1">
+  									<label class="form-check-label" for="jk_lk">Laki-Laki</label>
+  								</div>
+  								<div th:if="${old.jenis_kelamin == 2}" class="form-check form-check-inline">
+	  								<input class="form-check-input" type="radio" name="jenis_kelamin" checked="" id="jk2" value="2">
+	  								<label class="form-check-label" for="jk_pr">Perempuan</label>
+	  							</div>
+	  							<div th:if="${old.jenis_kelamin == 0}" class="form-check form-check-inline">
+	                            	<input  class="form-check-input" type="radio" name="jenis_kelamin" id="jk1" value="1">
+  									<label class="form-check-label" for="jk_lk">Laki-Laki</label></span>
+  								</div>
+  								<div th:if="${old.jenis_kelamin == 0}" class="form-check form-check-inline">
+	  								<input class="form-check-input" type="radio" name="jenis_kelamin" id="jk2" value="2">
+	  								<label class="form-check-label" for="jk_pr">Perempuan</label></span>
+	  							</div>
+	                            <br><br>                          
+	                            Spesialisasi: <br>
+	                            <div class="form-row">
+	                            	<div class="form-group col-md-9">
+			                            <select class="form-control" name="spesialisasi_id">
+			                            	<option value="0">-Select-</option>
+			                            	
+											<option th:each="spesialisasi : ${pustakawanSpesialisasi}" 
+												th:value="${spesialisasi.id}" 
+												th:text="${spesialisasi.nama}">
+											</option>
+										</select>
+									</div>
+									<div class="form-group col-md-2">
+										<button type="submit" class="btn btn-primary" name="tambah">Tambah</button>	
+									</div>	
+  								</div>								
+	                           <br>
+	                            <button type="submit" class="btn btn-success" name="submit">Update</button>
+	                            <br>
+	                        </form>
+	                     </div>
+                	</div>		        
+	            </div>
+	            <div class="col-md-4"></div>
+	        </div>        
+	    </div>
+	</body>
+</html>
