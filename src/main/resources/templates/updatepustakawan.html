@@ -12,6 +12,7 @@
 	        <div class="row">
 	            <div class="col-md-4">
 	            	 <div class="card">
+	            	 <div text-align = "center" class="card-header">Ubah Pustakawan</div>
 	                    <div class="card-body"> 
 	                        <form th:action="@{/pustakawan/update/{id} (id=${old.id})}" th:object="${pustakawan}" method="POST">
 	                            Nama: <br>

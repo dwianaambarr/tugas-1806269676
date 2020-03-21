@@ -111,7 +111,6 @@ public class PustakawanController {
 	
 	@RequestMapping(value = "/pustakawan/delete/{id}", method = RequestMethod.POST)
 	private String deletePilot1(@PathVariable(value = "id") long id, Model model) {
-			List <SpesialisasiModel> spesialisasiList = spesialisasiService.getAllSpesialisasi();
 			pustakawanService.deletePustakawan(id);
 			String navigation = "Berhasil";
 			model.addAttribute("navigation", navigation);

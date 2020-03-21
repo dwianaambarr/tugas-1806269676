@@ -52,6 +52,7 @@ public class PustakawanImpl implements PustakawanService {
 		old.setTanggal_lahir(pustakawan.getTanggal_lahir());
 		old.setTempat_lahir(pustakawan.getTempat_lahir());
 		old.setPustakawanSpesialisasi(pustakawan.getPustakawanSpesialisasi());
+		pustakawandb.save(old);
 	}
 	
 	@Override

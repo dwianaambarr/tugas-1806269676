@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Table;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
@@ -57,7 +55,7 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 		private int jenis_kelamin;
 		
 		@OneToMany(mappedBy = "pustakawan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-		private List<PenugasanModel> pustakawanPerpustakaan;
+		private List<PenugasanModel> penugasanPustakawan;
 	
 		@ManyToMany(mappedBy = "pustakawanList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 		private List<SpesialisasiModel> pustakawanSpesialisasi;
@@ -120,13 +118,13 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 		public void setJenis_kelamin(int jenis_kelamin) {
 			this.jenis_kelamin = jenis_kelamin;
 		}
-		
-		public List<PenugasanModel> getPustakawanPerpustakaan() {
-			return pustakawanPerpustakaan;
+
+		public List<PenugasanModel> getPenugasanPustakawan() {
+			return penugasanPustakawan;
 		}
 
-		public void setPustakawanPerpustakaan(List<PenugasanModel> pustakawanPerpustakaan) {
-			this.pustakawanPerpustakaan = pustakawanPerpustakaan;
+		public void setPenugasanPustakawan(List<PenugasanModel> penugasanPustakawan) {
+			this.penugasanPustakawan = penugasanPustakawan;
 		}
 
 		public List<SpesialisasiModel> getPustakawanSpesialisasi() {

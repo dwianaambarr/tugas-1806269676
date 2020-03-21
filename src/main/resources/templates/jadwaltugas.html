@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Tambah Jadwal</title>
+	    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+	    <nav th:replace="fragments/fragment :: navbar"></nav>
+	    <br>
+	    <div class="container-fluid">	      
+	        <div class="row">
+	            <div class="col-md-4">
+	            	 <div class="card">
+	            	 <div text-align = "center" class="card-header">Tambah Jadwal</div>
+	            	 <b><div text-align = "center" class="card-body" th:text="'Nama Pustakawan: ' + ${pustakawan.nama}"></div></b>
+	                    <div class="card-body"> 
+	                        <form th:action="@{/jadwal/tambah/{nip} (nip=${pustakawan.nip})}" th:object="${pustakawan}" method="POST">                        
+	                            Nama Perpustakaan: <br>
+	                            <div class="form-row">
+	                            	<div class="form-group col-md-9">
+			                            <select class="form-control" name="perpustakaan_id">
+			                            	<option value="0">-Select-</option>
+											<option th:each="perpustakaan : ${pustakawanPerpustakaan}" 
+												th:value="${perpustakaan.id}" 
+												th:text="${perpustakaan.nama}">
+											</option>
+										</select>
+									</div>
+									</div>
+									Hari:
+									<br>
+	                            <div class="form-row">
+	                            	<div class="form-group col-md-9">
+			                            <select class="form-control" name="hari">
+			                            	<option value="0">-Select-</option>
+											<option th:value="1" 
+												th:text="Senin">
+											</option>
+											<option th:value="2" 
+												th:text="Selasa">
+											</option>
+											<option th:value="3" 
+												th:text="Rabu">
+											</option>
+											<option th:value="4" 
+												th:text="Kamis">
+											</option>
+											<option th:value="5" 
+												th:text="Jumat">
+											</option>
+											<option th:value="6" 
+												th:text="Sabtu">
+											</option>
+											<option th:value="7" 
+												th:text="Minggu">
+											</option>
+										</select>
+									</div>
+  								</div>								
+	                           <br>
+	                            <button type="submit" class="btn btn-success" name="submit">Submit</button>
+	                            <br>
+	                        </form>
+	                     </div>
+                	</div>		        
+	            </div>
+	            <div class="col-md-4"></div>
+	        </div>        
+	    </div>
+       <div class="container">
+
+          <br> <br> 
+	    
+	    		<h4 align="center">DAFTAR JADWAL TUGAS</h4>
+		<br>
+        <div class="row">
+            <br> 			
+                <div class="table-responsive">	                  
+                      	<table class="table table-striped">
+						<thead class="thead-dark">
+						<tr>
+							<th width="2%" style="text-align: center">No</th>
+							<th width="30%" style="text-align: center">Nama Perpustakaan</th>
+							<th width="20%" style="text-align: center">Hari</th>
+							<th width="1%"style="text-align: center">Action</th>
+						</tr>
+						</thead>
+						
+					 	<tbody>
+							<tr th:each="tugas, i : ${penugasan}">
+								<td align=Center th:text="${i.count}"></td>
+								<td align=Center th:text="tes"></td>
+								<td align=Center th:text="${tugas.hari}"></td>
+								<td style="padding: 10px;">
+								<a th:href="@{'/jadwal/delete/' + ${tugas.id}}">
+								<input type="button" class="btn btn-danger" value = "Hapus"></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<br>
+      			</div>
+        	</div>
+        </div>
+       </div>
+	</body>
+</html>
