@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.apap.tugas1806269676.model.PerpustakaanModel;
 import com.apap.tugas1806269676.model.PustakawanModel;
 import com.apap.tugas1806269676.model.SpesialisasiModel;
+import com.apap.tugas1806269676.service.PerpustakaanService;
 import com.apap.tugas1806269676.service.PustakawanService;
 import com.apap.tugas1806269676.service.SpesialisasiService;
 
@@ -32,6 +34,9 @@ public class PustakawanController {
 	@Autowired
 	private SpesialisasiService spesialisasiService;
 	
+	@Autowired
+	private PerpustakaanService perpustakaanService;
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	private String viewPustakawan(Model model) {
@@ -47,7 +52,7 @@ public class PustakawanController {
 		List <SpesialisasiModel> spesialisasiList = spesialisasiService.getAllSpesialisasi();
 		String navigation = "Tambah Pustakawan";
 		model.addAttribute("navigation", navigation);
-		model.addAttribute("pustakawanSpesialisasi", spesialisasiList);
+		model.addAttribute("spesialisasi", spesialisasiList);
 		model.addAttribute("pustakawanList", new PustakawanModel());
 		return "tambahpustakawan";	
 	}
@@ -84,7 +89,7 @@ public class PustakawanController {
 		String navigation = "Ubah Pustakawan";
 		model.addAttribute("navigation", navigation);
 		model.addAttribute("old", old);
-		model.addAttribute("pustakawanSpesialisasi", spesialisasiList);
+		model.addAttribute("spesialisasi", spesialisasiList);
 		model.addAttribute("new", new PustakawanModel());
 		return "updatepustakawan";
 	}
@@ -115,6 +120,20 @@ public class PustakawanController {
 			String navigation = "Berhasil";
 			model.addAttribute("navigation", navigation);
 			return "delete";
+	}
+	
+	@RequestMapping(value = "/cari", method = RequestMethod.GET)
+	private String cari(Model model) {
+			List <SpesialisasiModel> spesialisasiList = spesialisasiService.getAllSpesialisasi();
+			List <PerpustakaanModel> perpustakaanList = perpustakaanService.getAllPerpustakaan();
+			List <PustakawanModel> pustakawan = pustakawanService.getAllPustakawan();
+			String navigation = "Cari Pustakawan";
+			model.addAttribute("spesialisasi", spesialisasiList);
+			model.addAttribute("pustakawan", pustakawan);
+			model.addAttribute("perpustakaan", perpustakaanList);
+			model.addAttribute("navigation", navigation);
+			return "caripustakawan";
 		}
 	
 }
+	

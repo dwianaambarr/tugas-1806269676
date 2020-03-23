@@ -37,7 +37,7 @@ public class PenugasanController {
 		PustakawanModel pustakawan = pustakawanService.getPustakawanByNip(nip);
 		String navigation = "Tambah Jadwal";
 		model.addAttribute("navigation", navigation);
-		model.addAttribute("pustakawanPerpustakaan", perpustakaanList);
+		model.addAttribute("perpustakaan", perpustakaanList);
 		model.addAttribute("pustakawan", pustakawan);
 		model.addAttribute("penugasan", penugasan);
 		model.addAttribute("pustakawanList", new PenugasanModel());
@@ -69,13 +69,11 @@ public class PenugasanController {
 		}
 	
 	@RequestMapping(value = "/jadwal/delete/{id}", method = RequestMethod.POST)
-	private String deleteJadwal(@PathVariable(value = "id") long id, 
-			@ModelAttribute PustakawanModel pustakawan, Model model) {
-			for(PenugasanModel penugasan : pustakawan.getPenugasanPustakawan()) {
-				penugasanService.deletePenugasan(penugasan.getId());
+	private String deleteJadwal1(@PathVariable(value = "id") long id, Model model) {
+			penugasanService.deletePenugasan(id);
 				String navigation = "Berhasil!";
 				model.addAttribute("navigation", navigation);
-			}
 			return "delete";
 		}
+	
 }

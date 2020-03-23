@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-	    <title>Tambah Jadwal</title>
+	    <title>Cari Pustakawan</title>
 	    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
 	    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 	</head>
@@ -12,54 +12,34 @@
 	        <div class="row">
 	            <div class="col-md-4">
 	            	 <div class="card">
-	            	 <div text-align = "center" class="card-header">Tambah Jadwal</div>
-	            	 <b><div text-align = "center" class="card-body" th:text="'Nama Pustakawan: ' + ${pustakawan.nama}"></div></b>
-	                    <div class="card-body"> 
-	                        <form th:action="@{/jadwal/tambah/{nip} (nip=${pustakawan.nip})}" th:object="${pustakawan}" method="POST">                        
+	            	 <div text-align = "center" class="card-header">Cari Pustakawan</div>
+	                    <div class="card-body">                      
 	                            Nama Perpustakaan: <br>
 	                            <div class="form-row">
 	                            	<div class="form-group col-md-9">
 			                            <select class="form-control" name="perpustakaan_id">
 			                            	<option value="0">-Select-</option>
-											<option th:each="perpustakaan : ${perpustakaan}" 
-												th:value="${perpustakaan.id}" 
+											<option th:each="perpustakaan : ${perpustakaan}"
 												th:text="${perpustakaan.nama}">
 											</option>
 										</select>
 									</div>
 									</div>
-									Hari:
+									Nama Spesialisasi:
 									<br>
 	                            <div class="form-row">
 	                            	<div class="form-group col-md-9">
-			                            <select class="form-control" name="hari">
+			                            <select class="form-control" name="spesialisasi_id">
 			                            	<option value="0">-Select-</option>
-											<option th:value="1" 
-												th:text="Senin">
-											</option>
-											<option th:value="2" 
-												th:text="Selasa">
-											</option>
-											<option th:value="3" 
-												th:text="Rabu">
-											</option>
-											<option th:value="4" 
-												th:text="Kamis">
-											</option>
-											<option th:value="5" 
-												th:text="Jumat">
-											</option>
-											<option th:value="6" 
-												th:text="Sabtu">
-											</option>
-											<option th:value="7" 
-												th:text="Minggu">
+											<option th:each="spesialisasi : ${spesialisasi}" 
+												th:value="${spesialisasi.id}" 
+												th:text="${spesialisasi.nama}">
 											</option>
 										</select>
 									</div>
-  								</div>								
+									</div>					
 	                           <br>
-	                            <button type="submit" class="btn btn-success" name="submit">Submit</button>
+	                            <button type="submit" class="btn btn-success" name="submit">Cari</button>
 	                            <br>
 	                        </form>
 	                     </div>
@@ -72,7 +52,7 @@
 
           <br> <br> 
 	    
-	    		<h4 align="center">DAFTAR JADWAL TUGAS</h4>
+	    		<h4 align="center">DAFTAR PUSTAKAWAN</h4>
 		<br>
         <div class="row">
             <br> 			
