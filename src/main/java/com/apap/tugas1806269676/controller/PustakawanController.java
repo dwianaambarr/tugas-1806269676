@@ -1,6 +1,7 @@
 package com.apap.tugas1806269676.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,10 +41,12 @@ public class PustakawanController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	private String viewPustakawan(Model model) {
-		List<PustakawanModel> pustakawan = pustakawanService.getAllPustakawan();	
+		List<PustakawanModel> pustakawan = pustakawanService.getAllPustakawan();
+		List<SpesialisasiModel> spesialisasi = spesialisasiService.getAllSpesialisasi();
 		String navigation = "SIP";
 		model.addAttribute("navigation", navigation);
 		model.addAttribute("pustakawan", pustakawan);
+		model.addAttribute("spesialisasi", spesialisasi);
 		return "beranda";
 	}
 	
@@ -53,25 +56,23 @@ public class PustakawanController {
 		String navigation = "Tambah Pustakawan";
 		model.addAttribute("navigation", navigation);
 		model.addAttribute("spesialisasi", spesialisasiList);
-		model.addAttribute("pustakawanList", new PustakawanModel());
+		model.addAttribute("pustakawan", new PustakawanModel());
 		return "tambahpustakawan";	
 	}
 	
 	@RequestMapping(value = "/pustakawan/tambah", method = RequestMethod.POST, params={"submit"})
-	private String addPustakawanSubmit(@RequestParam("spesialisasi_id") long spesialisasi_id, 
+	private String addPustakawanSubmit(@RequestParam (value= "spesialisasi", required = false) SpesialisasiModel spesialisasi, 
 			@ModelAttribute PustakawanModel pustakawan, Model model) {
 		String navigation = "Berhasil";
 		pustakawanService.addPustakawan(pustakawan);
-		if (spesialisasi_id != 0) { 
-			PustakawanModel pustakawan_id = pustakawanService.getPustakawanById(pustakawan.getId());
-					SpesialisasiModel spesialisasiId = spesialisasiService.getSpesialisasiById(spesialisasi_id);
-					spesialisasiId.getPustakawanList().add(pustakawan_id);
-					spesialisasiService.addSpesialisasi(spesialisasiId);
+		if (spesialisasi != null) { 
+			Optional<SpesialisasiModel> spesialisasiId = spesialisasiService.getSpesialisasiById(spesialisasi.getId());
+			pustakawan.getPustakawanSpesialisasi().add(spesialisasiId.get());
 		}
 		model.addAttribute("navigation", navigation);
 		return "add";
-	}
-	
+	} 
+		
 	@RequestMapping(value = "/pustakawan", method = RequestMethod.GET)
 	private String detail(@RequestParam(value = "nip") String nip, Model model) {
 		PustakawanModel pustakawan = pustakawanService.getPustakawanByNip(nip);
@@ -85,11 +86,11 @@ public class PustakawanController {
 	@RequestMapping(value = "/pustakawan/update/{id}", method = RequestMethod.GET)
 	private String updatePustakawan(@PathVariable(value = "id") long id, Model model) {
 		PustakawanModel old = pustakawanService.getPustakawanById(id);
-		List <SpesialisasiModel> spesialisasiList = spesialisasiService.getAllSpesialisasi();
+		List <SpesialisasiModel> spesialisasi = spesialisasiService.getAllSpesialisasi();
 		String navigation = "Ubah Pustakawan";
 		model.addAttribute("navigation", navigation);
 		model.addAttribute("old", old);
-		model.addAttribute("spesialisasi", spesialisasiList);
+		model.addAttribute("spesialisasi", spesialisasi);
 		model.addAttribute("new", new PustakawanModel());
 		return "updatepustakawan";
 	}

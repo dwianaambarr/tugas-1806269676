@@ -32,15 +32,15 @@ public class PenugasanController {
 
 	@RequestMapping(value = "/jadwal/tambah/{nip}", method = RequestMethod.GET)
 	private String add(@PathVariable(value = "nip") String nip, Model model) {
-		List <PerpustakaanModel> perpustakaanList = perpustakaanService.getAllPerpustakaan();
-		List <PenugasanModel> penugasan = penugasanService.getAllPenugasan();
-		PustakawanModel pustakawan = pustakawanService.getPustakawanByNip(nip);
-		String navigation = "Tambah Jadwal";
-		model.addAttribute("navigation", navigation);
-		model.addAttribute("perpustakaan", perpustakaanList);
-		model.addAttribute("pustakawan", pustakawan);
-		model.addAttribute("penugasan", penugasan);
-		model.addAttribute("pustakawanList", new PenugasanModel());
+//		List <PerpustakaanModel> perpustakaanList = perpustakaanService.getAllPerpustakaan();
+//		List <PenugasanModel> penugasan = penugasanService.getAllPenugasan();
+//		PustakawanModel pustakawan = pustakawanService.getPustakawanByNip(nip);
+//		String navigation = "Tambah Jadwal";
+//		model.addAttribute("navigation", navigation);
+//		model.addAttribute("perpustakaan", perpustakaanList);
+//		model.addAttribute("pustakawan", pustakawan);
+//		model.addAttribute("penugasan", penugasan);
+//		model.addAttribute("pustakawanList", new PenugasanModel());
 		return "jadwaltugas";	
 	}
 	
@@ -61,18 +61,18 @@ public class PenugasanController {
 	
 	@RequestMapping(value = "/jadwal/delete/{id}", method = RequestMethod.GET)
 	private String deleteJadwal(@PathVariable(value = "id") long id, Model model) {
-			PenugasanModel penugasan = penugasanService.getPenugasanById(id);
-			model.addAttribute("penugasan", penugasan);
-			String navigation = "Hapus Jadwal";
-			model.addAttribute("navigation", navigation);
+//			PenugasanModel penugasan = penugasanService.getPenugasanById(id);
+//			model.addAttribute("penugasan", penugasan);
+//			String navigation = "Hapus Jadwal";
+//			model.addAttribute("navigation", navigation);
 			return "deletejadwal";
 		}
 	
 	@RequestMapping(value = "/jadwal/delete/{id}", method = RequestMethod.POST)
 	private String deleteJadwal1(@PathVariable(value = "id") long id, Model model) {
-			penugasanService.deletePenugasan(id);
-				String navigation = "Berhasil!";
-				model.addAttribute("navigation", navigation);
+//			penugasanService.deletePenugasan(id);
+//				String navigation = "Berhasil!";
+//				model.addAttribute("navigation", navigation);
 			return "delete";
 		}
 	

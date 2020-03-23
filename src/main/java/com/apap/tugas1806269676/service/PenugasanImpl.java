@@ -13,25 +13,25 @@ import com.apap.tugas1806269676.repository.PenugasanDb;
 @Service
 @Transactional
 public class PenugasanImpl implements PenugasanService{	
-	@Autowired
-	private PenugasanDb penugasandb;
-
-	@Override
-	public void addPenugasan(PenugasanModel penugasan) {
-	}
-	
-	@Override
-	public List<PenugasanModel> getAllPenugasan() {
-		return penugasandb.findAll();
-	}
-	
-	@Override
-	public PenugasanModel getPenugasanById(long id) {
-		return penugasandb.findById(id);
-	}
-	
-	@Override
-	public void deletePenugasan(long id) {
-		penugasandb.deleteById(id);
-	}
+//	@Autowired
+//	private PenugasanDb penugasandb;
+//
+//	@Override
+//	public void addPenugasan(PenugasanModel penugasan) {
+//	}
+//	
+//	@Override
+//	public List<PenugasanModel> getAllPenugasan() {
+//		return penugasandb.findAll();
+//	}
+//	
+//	@Override
+//	public PenugasanModel getPenugasanById(long id) {
+//		return penugasandb.findById(id);
+//	}
+//	
+//	@Override
+//	public void deletePenugasan(long id) {
+//		penugasandb.deleteById(id);
+//	}
 }

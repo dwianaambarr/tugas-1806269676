@@ -11,8 +11,8 @@ import com.apap.tugas1806269676.model.PenugasanModel;
  *
  */
 
-public interface PenugasanDb extends JpaRepository<PenugasanModel, Long>{
-	PenugasanModel findById(long id);
-	void deleteById(long id);
+public interface PenugasanDb {
+//	PenugasanModel findById(long id);
+//	void deleteById(long id);
 	
 }

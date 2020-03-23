@@ -12,9 +12,9 @@
 	        <div class="row">
 	            <div class="col-md-4">
 	            	 <div class="card">
-	            	 <div text-align = "center" class="card-header">Ubah Pustakawan</div>
+	            	 <b><center><div text-align = "center" class="card-header">Ubah Pustakawan</div></center></b>
 	                    <div class="card-body"> 
-	                        <form th:action="@{/pustakawan/update/{id} (id=${old.id})}" th:object="${pustakawan}" method="POST">
+	                        <form th:action="@{/pustakawan/update/{id} (id=${old.id})}" th:object="${old}" method="POST">
 	                            Nama: <br>
 	                            <input type="text" name="nama" th:field="${old.nama}" class="form-control"/>
 	                            <br>
@@ -53,17 +53,18 @@
 	                            Spesialisasi: <br>
 	                            <div class="form-row">
 	                            	<div class="form-group col-md-9">
-			                            <select class="form-control" name="spesialisasi_id">
+			                            <select class="form-control" id= "spesialisasi" name="spesialisasi_id" th:field="*{pustakawanSpesialisasi}">
 			                            	<option value="0">-Select-</option>
 			                            	
-											<option th:each="spesialisasi : ${pustakawanSpesialisasi}" 
+											<option th:each="spesialisasi : ${spesialisasi}" 
 												th:value="${spesialisasi.id}" 
-												th:text="${spesialisasi.nama}">
+												th:text="${spesialisasi.nama}"
+												th:selected="${old.pustakawanSpesialisasi.contains(spesialisasi)}">
 											</option>
 										</select>
 									</div>
 									<div class="form-group col-md-2">
-										<button type="submit" class="btn btn-primary" name="tambah">Tambah</button>	
+										<button type="button" class="btn btn-primary" name="tambah">Tambah</button>	
 									</div>	
   								</div>								
 	                           <br>

@@ -2,7 +2,6 @@ package com.apap.tugas1806269676.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,18 +11,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.apap.tugas1806269676.model.PustakawanModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -44,16 +36,33 @@ public class SpesialisasiModel implements Serializable{
 		@Column(name = "deskripsi")
 		private String deskripsi;
 		
-		@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-		@JoinTable(name = "punya", joinColumns = @JoinColumn(name = "spesialisasi_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "pustakawan_id", referencedColumnName = "id"))
-		private List<PustakawanModel> pustakawanList;
 		
-		public List<PustakawanModel> getPustakawanList() {
-			return pustakawanList;
+		@Override
+		public boolean equals(Object o) {
+		    if(o == null)
+		    {
+		        return false;
+		    }
+		    if (o == this)
+		    {
+		        return true;
+		    }
+		    if (getClass() != o.getClass())
+		    {
+		        return false;
+		    }
+		     
+		    SpesialisasiModel spesialisasi = (SpesialisasiModel) o;
+		    return (this.getId() == spesialisasi.getId());
 		}
-
-		public void setPustakawanList(List<PustakawanModel> pustakawanList) {
-			this.pustakawanList = pustakawanList;
+		
+		@Override
+		public int hashCode()
+		{
+		    final int PRIME = 31;
+		    int result = 1;
+		    result = PRIME * result + (int) getId();
+		    return result;
 		}
 
 		public long getId() {

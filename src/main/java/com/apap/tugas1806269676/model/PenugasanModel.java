@@ -24,22 +24,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tugasdi")
 public class PenugasanModel implements Serializable {	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pustakawan_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "pustakawan_id")
+//	, referencedColumnName = "id", nullable = false)
 	private PustakawanModel pustakawan;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "perpustakaan_id")
+//	, referencedColumnName = "id", nullable = false)
+	private PerpustakaanModel perpustakaan;
+	
+	@NotNull
+	@Size(max = 50)
+	@Column(name = "hari", nullable = false)
+	private String hari;
+	
 	public PustakawanModel getPustakawan() {
 		return this.pustakawan;
 	}
@@ -47,10 +46,6 @@ public class PenugasanModel implements Serializable {
 	public void setPustakawan(PustakawanModel pustakawan) {
 		this.pustakawan = pustakawan;
 	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "perpustakaan_id", referencedColumnName = "id", nullable = false)
-	private PerpustakaanModel perpustakaan;
 
 	public PerpustakaanModel getPerpustakaan() {
 		return this.perpustakaan;
@@ -60,17 +55,51 @@ public class PenugasanModel implements Serializable {
 		this.perpustakaan = perpustakaan;
 	}
 
-	@NotNull
-	@Size(max = 50)
-	@Column(name = "hari", nullable = false)
-	private String hari;
-
 	public String getHari() {
 		return this.hari;
 	}
 
 	public void setHari(String hari) {
 		this.hari = hari;
+	}
+	
+
+	@Override
+	public boolean equals(Object o) {
+		    if(o == null)
+		    {
+		        return false;
+		    }
+		    if (o == this)
+		    {
+		        return true;
+		    }
+		    if (getClass() != o.getClass())
+		    {
+		        return false;
+		    }
+		PenugasanModel penugasan = (PenugasanModel) o;
+		if (perpustakaan == null) 
+		{
+			if (penugasan.perpustakaan != null)
+				return false;
+		} else if (!perpustakaan.equals(penugasan.perpustakaan))
+			return false;
+		if (pustakawan == null) {
+			if (penugasan.pustakawan != null)
+				return false;
+		} else if (!pustakawan.equals(penugasan.pustakawan))
+			return false;
+		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((perpustakaan == null) ? 0 : perpustakaan.hashCode());
+		result = prime * result + ((pustakawan == null) ? 0 : pustakawan.hashCode());
+		return result;
 	}
 	
 }

@@ -2,7 +2,6 @@ package com.apap.tugas1806269676.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,19 +11,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.apap.tugas1806269676.model.PustakawanModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -46,13 +36,42 @@ public class PerpustakaanModel implements Serializable{
 		private String lokasi;
 		
 		@OneToMany(mappedBy = "perpustakaan", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-		private List<PenugasanModel> penugasanList;
+		private Set<PenugasanModel> penugasanList = new HashSet<>();
+		
+		@Override
+		public boolean equals(Object o) {
+		    if(o == null)
+		    {
+		        return false;
+		    }
+		    if (o == this)
+		    {
+		        return true;
+		    }
+		    if (getClass() != o.getClass())
+		    {
+		        return false;
+		    }
+		     
+		    PerpustakaanModel perpustakaan = (PerpustakaanModel) o;
+		    return (this.getId() == perpustakaan.getId());
+		}
+		
+		@Override
+		public int hashCode()
+		{
+		    final int PRIME = 31;
+		    int result = 1;
+		    result = PRIME * result + (int) getId();
+		    return result;
+		}
 
-		public List<PenugasanModel> getPenugasanList() {
+
+		public Set<PenugasanModel> getPenugasanList() {
 			return penugasanList;
 		}
 
-		public void setPenugasanList(List<PenugasanModel> penugasanList) {
+		public void setPenugasanList(Set<PenugasanModel> penugasanList) {
 			this.penugasanList = penugasanList;
 		}
 
@@ -80,5 +99,4 @@ public class PerpustakaanModel implements Serializable{
 			this.lokasi = lokasi;
 		}
 		
-
 }

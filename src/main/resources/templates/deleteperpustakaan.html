@@ -17,7 +17,7 @@
 	            	 
 	                    <div class="card-body"> 
 	                    	<div class="form-group">
-						      <h4><b>Hapus Data?</b></h4>
+						      <center><h4><b>Hapus Data?</b></h4></center><br>
 						      <form th:action="@{/perpustakaan/delete/{id}(id=${perpustakaan.id})}" th:object="${perpustakaan}" method="POST">
 						    </div>
 								<b>Nama:</b><br>
@@ -28,7 +28,7 @@
 								<br><br>	
 	                           <td style="padding: 10px;">
 								<a th:href="@{'/perpustakaan'}">
-				                <input type="button" class="btn btn-secondary" value = "Cancel"></a>
+				                <input type="button" class="btn btn-primary" value = "Cancel"></a>
 								<button type="submit" class="btn btn-danger" name="submit">Hapus</button>
 								</td>
 	                            <br>

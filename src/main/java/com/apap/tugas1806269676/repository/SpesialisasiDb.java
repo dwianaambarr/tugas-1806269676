@@ -1,5 +1,7 @@
 package com.apap.tugas1806269676.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.apap.tugas1806269676.model.SpesialisasiModel;
@@ -12,5 +14,5 @@ import com.apap.tugas1806269676.model.SpesialisasiModel;
  */
 
 public interface SpesialisasiDb extends JpaRepository<SpesialisasiModel, Long>{
-	SpesialisasiModel findById(long id);
+	Optional<SpesialisasiModel> findById(long id);
 }

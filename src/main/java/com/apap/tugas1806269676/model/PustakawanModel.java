@@ -5,13 +5,16 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
@@ -55,11 +58,59 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 		private int jenis_kelamin;
 		
 		@OneToMany(mappedBy = "pustakawan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-		private List<PenugasanModel> penugasanPustakawan;
+		private Set<PenugasanModel> penugasanPustakawan = new HashSet<>();
 	
-		@ManyToMany(mappedBy = "pustakawanList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-		private List<SpesialisasiModel> pustakawanSpesialisasi;
+		@ManyToMany(fetch = FetchType.LAZY)
+		@JoinTable(name = "punya", 
+			joinColumns = @JoinColumn(name = "pustakawan_id", referencedColumnName = "id"), 
+			inverseJoinColumns = @JoinColumn(name = "spesialisasi_id", referencedColumnName = "id"))
+		private Set<SpesialisasiModel> pustakawanSpesialisasi = new HashSet<>();
 		
+		@Override
+		public boolean equals(Object o) {
+		    if(o == null)
+		    {
+		        return false;
+		    }
+		    if (o == this)
+		    {
+		        return true;
+		    }
+		    if (getClass() != o.getClass())
+		    {
+		        return false;
+		    }
+		     
+		    PustakawanModel pustakawan = (PustakawanModel) o;
+		    return (this.getId() == pustakawan.getId());
+		}
+		
+		@Override
+		public int hashCode()
+		{
+		    final int PRIME = 31;
+		    int result = 1;
+		    result = PRIME * result + (int) getId();
+		    return result;
+		}
+		
+		
+		public Set<PenugasanModel> getPenugasanPustakawan() {
+			return penugasanPustakawan;
+		}
+
+		public void setPenugasanPustakawan(Set<PenugasanModel> penugasanPustakawan) {
+			this.penugasanPustakawan = penugasanPustakawan;
+		}
+
+		public Set<SpesialisasiModel> getPustakawanSpesialisasi() {
+			return pustakawanSpesialisasi;
+		}
+
+		public void setPustakawanSpesialisasi(Set<SpesialisasiModel> pustakawanSpesialisasi) {
+			this.pustakawanSpesialisasi = pustakawanSpesialisasi;
+		}
+
 		public long getId() {
 			return id;
 		}
@@ -119,20 +170,6 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 			this.jenis_kelamin = jenis_kelamin;
 		}
 
-		public List<PenugasanModel> getPenugasanPustakawan() {
-			return penugasanPustakawan;
-		}
 
-		public void setPenugasanPustakawan(List<PenugasanModel> penugasanPustakawan) {
-			this.penugasanPustakawan = penugasanPustakawan;
-		}
-
-		public List<SpesialisasiModel> getPustakawanSpesialisasi() {
-			return pustakawanSpesialisasi;
-		}
-
-		public void setPustakawanSpesialisasi(List<SpesialisasiModel> pustakawanSpesialisasi) {
-			this.pustakawanSpesialisasi = pustakawanSpesialisasi;
-		}
 
 }
