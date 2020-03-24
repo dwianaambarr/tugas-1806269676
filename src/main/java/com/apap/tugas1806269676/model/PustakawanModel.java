@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
@@ -66,35 +68,6 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 			inverseJoinColumns = @JoinColumn(name = "spesialisasi_id", referencedColumnName = "id"))
 		private Set<SpesialisasiModel> pustakawanSpesialisasi = new HashSet<>();
 		
-		@Override
-		public boolean equals(Object o) {
-		    if(o == null)
-		    {
-		        return false;
-		    }
-		    if (o == this)
-		    {
-		        return true;
-		    }
-		    if (getClass() != o.getClass())
-		    {
-		        return false;
-		    }
-		     
-		    PustakawanModel pustakawan = (PustakawanModel) o;
-		    return (this.getId() == pustakawan.getId());
-		}
-		
-		@Override
-		public int hashCode()
-		{
-		    final int PRIME = 31;
-		    int result = 1;
-		    result = PRIME * result + (int) getId();
-		    return result;
-		}
-		
-		
 		public Set<PenugasanModel> getPenugasanPustakawan() {
 			return penugasanPustakawan;
 		}
@@ -131,7 +104,7 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 			return nip;
 		}
 		
-		public  String CreateNIP() {
+		public String CreateNIP() {
 			//Random Alphabet
 			Random r = new Random();
 	        String random =  String.valueOf((char)(r.nextInt(26)+'A') + String.valueOf((char)(r.nextInt(26)+'A')));	
@@ -170,6 +143,41 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 			this.jenis_kelamin = jenis_kelamin;
 		}
 
-
+		@Override
+		public boolean equals(Object o) {
+		    if(o == null)
+		    {
+		        return false;
+		    }
+		    if (o == this)
+		    {
+		        return true;
+		    }
+		    if (getClass() != o.getClass())
+		    {
+		        return false;
+		    }
+		     
+		    PustakawanModel pustakawan = (PustakawanModel) o;
+		    return (this.getId() == pustakawan.getId());
+		}
+		
+		@Override
+		public int hashCode()
+		{
+		    final int PRIME = 31;
+		    int result = 1;
+		    result = PRIME * result + (int) getId();
+		    return result;
+		}
+		
+//		public int count1 () {
+//			int count = 0;
+//			for (int i=0; i<getPenugasanPustakawan().size(); i++) {
+//				if(getPenugasanPustakawan().getClass().
+//			}
+//			count +=1;
+//			return 
+//		}
 
 }

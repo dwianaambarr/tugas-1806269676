@@ -12,16 +12,17 @@
 	        <div class="row">
 	            <div class="col-md-4">
 	            	 <div class="card">
-	            	 <div text-align = "center" class="card-header">Tambah Jadwal</div>
+	            	 <center><b><div text-align = "center" class="card-header">Tambah Jadwal</div></b></center>
 	            	 <b><div text-align = "center" class="card-body" th:text="'Nama Pustakawan: ' + ${pustakawan.nama}"></div></b>
 	                    <div class="card-body"> 
-	                        <form th:action="@{/jadwal/tambah/{nip} (nip=${pustakawan.nip})}" th:object="${pustakawan}" method="POST">                        
+	                        <form th:action="@{/jadwal/tambah/{nip} (nip=${pustakawan.nip})}" th:object="${penugasan}" method="POST">
+	                        <input type="hidden" name="pustakawan" th:field="*{pustakawan}"/>                        
 	                            Nama Perpustakaan: <br>
 	                            <div class="form-row">
 	                            	<div class="form-group col-md-9">
-			                            <select class="form-control" name="perpustakaan_id">
+			                            <select class="form-control" id= "perpustakaan" name="perpustakaan" th:field="*{perpustakaan}">
 			                            	<option value="0">-Select-</option>
-											<option th:each="perpustakaan : ${perpustakaan}" 
+											<option th:each="perpustakaan : ${perpustakaanList}" 
 												th:value="${perpustakaan.id}" 
 												th:text="${perpustakaan.nama}">
 											</option>
@@ -32,27 +33,27 @@
 									<br>
 	                            <div class="form-row">
 	                            	<div class="form-group col-md-9">
-			                            <select class="form-control" name="hari">
+			                            <select class="form-control" id="hari" name="hari">
 			                            	<option value="0">-Select-</option>
-											<option th:value="1" 
+											<option th:value="Senin" 
 												th:text="Senin">
 											</option>
-											<option th:value="2" 
+											<option th:value="Selasa" 
 												th:text="Selasa">
 											</option>
-											<option th:value="3" 
+											<option th:value="Rabu" 
 												th:text="Rabu">
 											</option>
-											<option th:value="4" 
+											<option th:value="Kamis" 
 												th:text="Kamis">
 											</option>
-											<option th:value="5" 
+											<option th:value="Jumat" 
 												th:text="Jumat">
 											</option>
-											<option th:value="6" 
+											<option th:value="Sabtu" 
 												th:text="Sabtu">
 											</option>
-											<option th:value="7" 
+											<option th:value="Minggu" 
 												th:text="Minggu">
 											</option>
 										</select>
@@ -88,12 +89,15 @@
 						</thead>
 						
 					 	<tbody>
-							<tr th:each="tugas, i : ${penugasanPerpustakaan}">
+							<tr th:each="p, i : *{pustakawan}">
 								<td align=Center th:text="${i.count}"></td>
-								<td align=Center th:text="tes"></td>
-								<td align=Center th:text="${tugas.hari}"></td>
+								<td>
+								</td>
+								<td>
+									<span th:each="tugas, i : *{p.penugasanPustakawan}">
+									<span th:text="${tugas.hari}"></span></span>
 								<td style="padding: 10px;">
-								<a th:href="@{'/jadwal/delete/' + ${tugas.id}}">
+								<a th:href="@{'/jadwal/delete/' + ${pustakawan_id}}">
 								<input type="button" class="btn btn-danger" value = "Hapus"></a>
 								</td>
 							</tr>

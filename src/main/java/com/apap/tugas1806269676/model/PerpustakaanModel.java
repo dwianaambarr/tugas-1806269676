@@ -2,6 +2,7 @@ package com.apap.tugas1806269676.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -38,35 +39,6 @@ public class PerpustakaanModel implements Serializable{
 		@OneToMany(mappedBy = "perpustakaan", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 		private Set<PenugasanModel> penugasanList = new HashSet<>();
 		
-		@Override
-		public boolean equals(Object o) {
-		    if(o == null)
-		    {
-		        return false;
-		    }
-		    if (o == this)
-		    {
-		        return true;
-		    }
-		    if (getClass() != o.getClass())
-		    {
-		        return false;
-		    }
-		     
-		    PerpustakaanModel perpustakaan = (PerpustakaanModel) o;
-		    return (this.getId() == perpustakaan.getId());
-		}
-		
-		@Override
-		public int hashCode()
-		{
-		    final int PRIME = 31;
-		    int result = 1;
-		    result = PRIME * result + (int) getId();
-		    return result;
-		}
-
-
 		public Set<PenugasanModel> getPenugasanList() {
 			return penugasanList;
 		}
@@ -99,4 +71,31 @@ public class PerpustakaanModel implements Serializable{
 			this.lokasi = lokasi;
 		}
 		
+		@Override
+		public boolean equals(Object o) {
+		    if(o == null)
+		    {
+		        return false;
+		    }
+		    if (o == this)
+		    {
+		        return true;
+		    }
+		    if (getClass() != o.getClass())
+		    {
+		        return false;
+		    }
+		     
+		    PerpustakaanModel perpustakaan = (PerpustakaanModel) o;
+		    return (this.getId() == perpustakaan.getId());
+		}
+		
+		@Override
+		public int hashCode()
+		{
+		    final int PRIME = 31;
+		    int result = 1;
+		    result = PRIME * result + (int) getId();
+		    return result;
+		}
 }

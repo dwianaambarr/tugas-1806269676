@@ -44,9 +44,9 @@
 								<td>
 								<a th:href="@{'/pustakawan?nip=' + ${pustakawan.nip}}" th:text="${pustakawan.nama}"></a>
 								</td>
-								<td align=Center th:text="${pustakawan.nip}"></td>
-								<td align=Center th:text="${pustakawan.tempat_lahir}"></td>
-								<td align=Center th:text="${pustakawan.tanggal_lahir}"></td>
+								<td th:text="${pustakawan.nip}"></td>
+								<td th:text="${pustakawan.tempat_lahir}"></td>
+								<td th:text="${pustakawan.tanggal_lahir}"></td>
 								<td>
 								<span th:if="${pustakawan.jenis_kelamin == 1}">Laki-laki</span>
 								<span th:if="${pustakawan.jenis_kelamin == 2}">Perempuan</span>
@@ -68,7 +68,7 @@
 										</span>
 									</span>
 								</td>
-								<td style="padding: 10px;">
+								<td align=Center style="padding: 10px;">
 								<a th:href="@{'/jadwal/tambah/'+ ${pustakawan.nip}}">
 				                <input type="button" class="btn btn-info" value = "Jadwal"></a>
 				                <a th:href="@{'/pustakawan/update/' + ${pustakawan.id}}">

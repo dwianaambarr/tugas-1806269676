@@ -136,5 +136,15 @@ public class PustakawanController {
 			return "caripustakawan";
 		}
 	
+	@RequestMapping(value = "/statistik", method = RequestMethod.GET)
+	private String statistik(@ModelAttribute PustakawanModel pustakawan, Model model) {
+			List <SpesialisasiModel> spesialisasiList = spesialisasiService.getAllSpesialisasi();
+			String navigation = "Statistik";
+			model.addAttribute("spesialisasi", spesialisasiList);
+			model.addAttribute("pustakawan", pustakawan);
+			model.addAttribute("navigation", navigation);
+			return "statistik";
+		}
+	
 }
 	

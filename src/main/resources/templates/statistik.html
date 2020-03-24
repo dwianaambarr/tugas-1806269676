@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Statistik</title>
+	    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+	    <nav th:replace="fragments/fragment :: navbar"></nav>
+	    <br>
+	    <h4 align="center">STATISTIK JUMLAH PUSTAKAWAN</h4><br>
+    
+     <div class="container">
+     <div class="container">
+     <div class="container">
+     <div class="container">
+     <div class="container">
+     <div class="container">
+     <div class="container">
+          <br> 
+        <div class="row"> 			
+                <div class="table-responsive">	                  
+                      	<table class="table table-striped">
+						<thead class="thead-dark">
+						<tr>
+							<th width="5%" style="text-align: center">No</th>
+							<th width="10%" style="text-align: center">Nama Spesialisasi</th>
+							<th width="10%" style="text-align: center">Jumlah Pustakawan</th>
+						</tr>
+						</thead>
+						
+					 	<tbody>
+							<tr  th:each="spesialisasi, i : ${spesialisasi}"> 
+								<td style="text-align: center" th:text="${i.count}"></td>
+								<td th:text="${spesialisasi.nama}"></td>
+								<td ></td>
+							</tr>
+						</tbody>
+					</table>
+					<br><br>
+      			</div>
+      		</div>
+        </div>
+       </div>
+      </div>
+    </div>
+  </body>
+</html>

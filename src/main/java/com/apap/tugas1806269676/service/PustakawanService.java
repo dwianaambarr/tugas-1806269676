@@ -13,4 +13,5 @@ public interface PustakawanService {
 		PustakawanModel getPustakawanByNip(String nip);
 		void updatePustakawan(long id, PustakawanModel pustakawan);
 		void deletePustakawan(long id);
+		void addPenugasan(long id, PustakawanModel pustakawan);
 }

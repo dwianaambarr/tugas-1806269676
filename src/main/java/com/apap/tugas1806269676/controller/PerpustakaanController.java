@@ -1,6 +1,7 @@
 package com.apap.tugas1806269676.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class PerpustakaanController {
 	
 	@RequestMapping(value = "/perpustakaan/delete/{id}", method = RequestMethod.GET)
 	private String deletePilot(@PathVariable(value = "id") long id, Model model) {
-			PerpustakaanModel perpustakaan = perpustakaanService.getPerpustakaanById(id);
+			PerpustakaanModel perpustakaan = perpustakaanService.getPerpustakaanById(id).get();
 			model.addAttribute("perpustakaan", perpustakaan);
 			String navigation = "Hapus Perpustakaan";
 			model.addAttribute("navigation", navigation);

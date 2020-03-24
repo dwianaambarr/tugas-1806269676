@@ -1,5 +1,6 @@
 package com.apap.tugas1806269676.repository;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.apap.tugas1806269676.model.PenugasanModel;
