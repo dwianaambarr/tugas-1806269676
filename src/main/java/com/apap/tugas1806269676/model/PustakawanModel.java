@@ -61,7 +61,7 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 		@Column(name = "jenis_kelamin", nullable = false)
 		private int jenis_kelamin;
 		
-		@OneToMany(mappedBy = "pustakawan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+		@OneToMany(mappedBy = "pustakawan", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
 		private Set<PenugasanModel> penugasanPustakawan = new HashSet<>();
 	
 		@ManyToMany(fetch = FetchType.LAZY)
@@ -172,4 +172,24 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 		    result = PRIME * result + (int) getId();
 		    return result;
 		}
+		
+		public List<SpesialisasiModel> iterasi(){
+			List<SpesialisasiModel> str = new ArrayList<SpesialisasiModel>();
+			Iterator<SpesialisasiModel> itr = getPustakawanSpesialisasi().iterator();
+			while (itr.hasNext()) {
+	            str.add(itr.next());
+	        }
+			return str;
+		}
+		
+//		public int count1() {
+//			int count = 0;
+//			for(int i=0; i<iterasi().size();i++) {
+//				if(iterasi().get(i).getId() == 3);{
+//					count+=1;
+//				}	
+//			}	
+//			return count;
+//		}
+		
 }

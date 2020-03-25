@@ -15,4 +15,5 @@ import com.apap.tugas1806269676.model.PerpustakaanModel;
 
 public interface PerpustakaanDb extends JpaRepository<PerpustakaanModel, Long>{
 	Optional<PerpustakaanModel> findById(long id);
+	PerpustakaanModel findByNama(String nama);
 }

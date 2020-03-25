@@ -10,5 +10,6 @@ public interface PerpustakaanService {
 		void addPerpustakaan(PerpustakaanModel perpustakaan);
 		List<PerpustakaanModel> getAllPerpustakaan();
 		Optional<PerpustakaanModel> getPerpustakaanById(long id);
+		PerpustakaanModel getPerpustakaanByNama(String nama);
 		void deletePerpustakaan(long id);
 }

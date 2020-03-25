@@ -71,22 +71,19 @@ public class PenugasanController {
 	}
 	
 	@RequestMapping(value = "/jadwal/delete/{id}", method = RequestMethod.GET)
-	private String deletePilot(@PathVariable(value = "id") long id, Model model) {
+	private String deletejadwal(@PathVariable(value = "id") long id, Model model) {
 			PustakawanModel pustakawan = pustakawanService.getPustakawanById(id);
-			Set<PenugasanModel> jadwal = pustakawan.getPenugasanPustakawan();
+//			Set<PenugasanModel> jadwal = pustakawan.getPenugasanPustakawan();
 			model.addAttribute("pustakawan", pustakawan);
-			model.addAttribute("jadwal", jadwal);
-			String navigation = "Hapus Pustakawan";
+//			model.addAttribute("jadwal", jadwal);
+			String navigation = "Hapus Jadwal";
 			model.addAttribute("navigation", navigation);
 			return "delete-jadwal";
 		}
 	
 	@RequestMapping(value = "/jadwal/delete/{id}", method = RequestMethod.POST)
-	private String deletePilot1(@PathVariable(value = "id") long id,
-			@ModelAttribute PenugasanModel penugasan, 
-			@RequestParam(value = "pustakawan", required = true) PustakawanModel pustakawan, Model model) {
-			pustakawan.getPenugasanPustakawan().remove(penugasan);
-			pustakawanService.deletePenugasan(pustakawan.getId(), pustakawan);
+	private String delete(@PathVariable(value = "id") long id, Model model) {
+			pustakawanService.deletePenugasan(id);
 			String navigation = "Berhasil";
 			model.addAttribute("navigation", navigation);
 			return "delete-success";

@@ -14,5 +14,6 @@ public interface PustakawanService {
 		void updatePustakawan(long id, PustakawanModel pustakawan);
 		void deletePustakawan(long id);
 		void addPenugasan(long id, PustakawanModel pustakawan);
-		void deletePenugasan(long id, PustakawanModel pustakawan);
+		void deletePenugasan(long id);
+		int count();
 }

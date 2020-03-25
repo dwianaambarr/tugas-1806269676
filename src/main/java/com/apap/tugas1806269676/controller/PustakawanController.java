@@ -106,10 +106,13 @@ public class PustakawanController {
 		return "update-success";
 	}
 	
-	@RequestMapping(value = "/pustakawan/delete/{id}", method = RequestMethod.GET)
-	private String deletePustakawan(@PathVariable(value = "id") long id, Model model) {
-			PustakawanModel pustakawan = pustakawanService.getPustakawanById(id);
+	@RequestMapping(value = "/pustakawan/delete/{pustakawan_id}/{perpustakan_nama}", method = RequestMethod.GET)
+	private String deletePustakawan(@PathVariable(value = "pustakawan_id") long pustakawan_id, 
+			@PathVariable(value = "perpustakaan_nama") String perpustakaan_nama, Model model) {
+			PustakawanModel pustakawan = pustakawanService.getPustakawanById(pustakawan_id);
+			PerpustakaanModel perpustakaan = perpustakaanService.getPerpustakaanByNama(perpustakaan_nama);
 			model.addAttribute("pustakawan", pustakawan);
+			model.addAttribute("perpustakaan", perpustakaan);
 			String navigation = "Hapus Pustakawan";
 			model.addAttribute("navigation", navigation);
 			return "delete-pustakawan";
@@ -137,19 +140,15 @@ public class PustakawanController {
 		}
 	
 	@RequestMapping(value = "/statistik", method = RequestMethod.GET)
-	private String statistik(Model model) {
+	private String statistik(@ModelAttribute PustakawanModel p,
+			Model model) {
 			List <SpesialisasiModel> spesialisasiList = spesialisasiService.getAllSpesialisasi();
 			List <PustakawanModel> pustakawan = pustakawanService.getAllPustakawan();
-//			Optional<SpesialisasiModel> sp1 = spesialisasiService.getSpesialisasiById(1);
-//			Optional<SpesialisasiModel> sp2 = spesialisasiService.getSpesialisasiById(2);
-//			Optional<SpesialisasiModel> sp3 = spesialisasiService.getSpesialisasiById(3);
-//			Optional<SpesialisasiModel> sp4 = spesialisasiService.getSpesialisasiById(4);
-//			Optional<SpesialisasiModel> sp5 = spesialisasiService.getSpesialisasiById(5);
-//			
-//			
+			int count = pustakawanService.count();	
+			
 			String navigation = "Statistik";
 			model.addAttribute("spesialisasi", spesialisasiList);
-//			model.addAttribute("sp1", sp1.ge);
+			model.addAttribute("sp1", count);
 //			model.addAttribute("sp2", spesialisasiList);
 //			model.addAttribute("sp3", spesialisasiList);
 //			model.addAttribute("sp4", spesialisasiList);

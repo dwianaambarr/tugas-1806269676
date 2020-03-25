@@ -23,6 +23,11 @@ public class PerpustakaanImpl implements PerpustakaanService {
 	}
 	
 	@Override
+	public PerpustakaanModel getPerpustakaanByNama(String nama) {
+		return perpustakaandb.findByNama(nama);
+	}
+	
+	@Override
 	public void addPerpustakaan(PerpustakaanModel perpustakaan) {
 		perpustakaandb.save(perpustakaan);
 	}
