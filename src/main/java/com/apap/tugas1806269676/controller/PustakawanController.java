@@ -53,8 +53,10 @@ public class PustakawanController {
 	@RequestMapping(value = "/pustakawan/tambah", method = RequestMethod.GET)
 	private String add(Model model) {
 		List <SpesialisasiModel> spesialisasiList = spesialisasiService.getAllSpesialisasi();
+		PustakawanModel list = new PustakawanModel();
 		String navigation = "Tambah Pustakawan";
 		model.addAttribute("navigation", navigation);
+		model.addAttribute("list", list.getPustakawanSpesialisasi());
 		model.addAttribute("spesialisasi", spesialisasiList);
 		model.addAttribute("pustakawan", new PustakawanModel());
 		return "add-pustakawan";	
@@ -72,6 +74,7 @@ public class PustakawanController {
 		model.addAttribute("navigation", navigation);
 		return "add-success";
 	} 
+
 		
 	@RequestMapping(value = "/pustakawan", method = RequestMethod.GET)
 	private String detail(@RequestParam(value = "nip") String nip, Model model) {
@@ -106,13 +109,10 @@ public class PustakawanController {
 		return "update-success";
 	}
 	
-	@RequestMapping(value = "/pustakawan/delete/{pustakawan_id}/{perpustakan_nama}", method = RequestMethod.GET)
-	private String deletePustakawan(@PathVariable(value = "pustakawan_id") long pustakawan_id, 
-			@PathVariable(value = "perpustakaan_nama") String perpustakaan_nama, Model model) {
-			PustakawanModel pustakawan = pustakawanService.getPustakawanById(pustakawan_id);
-			PerpustakaanModel perpustakaan = perpustakaanService.getPerpustakaanByNama(perpustakaan_nama);
+	@RequestMapping(value = "/pustakawan/delete/{id}", method = RequestMethod.GET)
+	private String deletePustakawan(@PathVariable(value = "id") long id, Model model) {
+			PustakawanModel pustakawan = pustakawanService.getPustakawanById(id);
 			model.addAttribute("pustakawan", pustakawan);
-			model.addAttribute("perpustakaan", perpustakaan);
 			String navigation = "Hapus Pustakawan";
 			model.addAttribute("navigation", navigation);
 			return "delete-pustakawan";

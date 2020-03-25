@@ -70,6 +70,10 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 			inverseJoinColumns = @JoinColumn(name = "spesialisasi_id", referencedColumnName = "id"))
 		private Set<SpesialisasiModel> pustakawanSpesialisasi = new HashSet<>();
 		
+	    public void addSpesialisasi(SpesialisasiModel spesialisasi){
+	    	pustakawanSpesialisasi.add(spesialisasi);
+	    }
+		
 		public Set<PenugasanModel> getPenugasanPustakawan() {
 			return penugasanPustakawan;
 		}
