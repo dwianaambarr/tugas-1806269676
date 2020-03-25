@@ -19,7 +19,7 @@
 	                        <input type="hidden" name="pustakawan" th:field="*{pustakawan}"/>                        
 	                            Nama Perpustakaan: <br>
 	                            <div class="form-row">
-	                            	<div class="form-group col-md-9">
+	                            	<div class="form-group col-md-12">
 			                            <select class="form-control" id= "perpustakaan" name="perpustakaan" th:field="*{perpustakaan}">
 			                            	<option value="0">-Select-</option>
 											<option th:each="perpustakaan : ${perpustakaanList}" 
@@ -32,7 +32,7 @@
 									Hari:
 									<br>
 	                            <div class="form-row">
-	                            	<div class="form-group col-md-9">
+	                            	<div class="form-group col-md-12">
 			                            <select class="form-control" id="hari" name="hari">
 			                            	<option value="0">-Select-</option>
 											<option th:value="Senin" 
@@ -60,7 +60,7 @@
 									</div>
   								</div>								
 	                           <br>
-	                            <button type="submit" class="btn btn-success" name="submit">Submit</button>
+	                            <button type="submit" class="btn btn-success" name="submit">Simpan</button>
 	                            <br>
 	                        </form>
 	                     </div>

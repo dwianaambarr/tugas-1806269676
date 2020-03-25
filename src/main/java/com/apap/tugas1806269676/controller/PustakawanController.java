@@ -140,20 +140,20 @@ public class PustakawanController {
 	private String statistik(Model model) {
 			List <SpesialisasiModel> spesialisasiList = spesialisasiService.getAllSpesialisasi();
 			List <PustakawanModel> pustakawan = pustakawanService.getAllPustakawan();
-			Optional<SpesialisasiModel> sp1 = spesialisasiService.getSpesialisasiById(1);
-			Optional<SpesialisasiModel> sp2 = spesialisasiService.getSpesialisasiById(2);
-			Optional<SpesialisasiModel> sp3 = spesialisasiService.getSpesialisasiById(3);
-			Optional<SpesialisasiModel> sp4 = spesialisasiService.getSpesialisasiById(4);
-			Optional<SpesialisasiModel> sp5 = spesialisasiService.getSpesialisasiById(5);
-			
-			
+//			Optional<SpesialisasiModel> sp1 = spesialisasiService.getSpesialisasiById(1);
+//			Optional<SpesialisasiModel> sp2 = spesialisasiService.getSpesialisasiById(2);
+//			Optional<SpesialisasiModel> sp3 = spesialisasiService.getSpesialisasiById(3);
+//			Optional<SpesialisasiModel> sp4 = spesialisasiService.getSpesialisasiById(4);
+//			Optional<SpesialisasiModel> sp5 = spesialisasiService.getSpesialisasiById(5);
+//			
+//			
 			String navigation = "Statistik";
 			model.addAttribute("spesialisasi", spesialisasiList);
-			model.addAttribute("sp1", spesialisasiList);
-			model.addAttribute("sp2", spesialisasiList);
-			model.addAttribute("sp3", spesialisasiList);
-			model.addAttribute("sp4", spesialisasiList);
-			model.addAttribute("sp5", spesialisasiList);
+//			model.addAttribute("sp1", sp1.ge);
+//			model.addAttribute("sp2", spesialisasiList);
+//			model.addAttribute("sp3", spesialisasiList);
+//			model.addAttribute("sp4", spesialisasiList);
+//			model.addAttribute("sp5", spesialisasiList);
 			model.addAttribute("pustakawan", pustakawan);
 			model.addAttribute("navigation", navigation);
 			return "statistik";
