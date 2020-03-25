@@ -21,7 +21,7 @@
 						      <center><h4><b>Hapus Data?</b></h4></center>
 						    </div>
 						      <form th:action="@{/pustakawan/delete/{id}(id=${pustakawan.id})}" th:object="${pustakawan}" method="POST">
-						    </div>
+
 								<b>Nama:</b><br>
 								<input class="form-control" type="text" th:field="${pustakawan.nama}" readonly>
 								<br>
@@ -62,7 +62,8 @@
 								<button type="submit" class="btn btn-danger" name="submit">Hapus</button>
 								</td>
 	                            <br>
-
+	                            </form>
+							</div>
 	                     </div>
                 	</div>		        
 	            </div>

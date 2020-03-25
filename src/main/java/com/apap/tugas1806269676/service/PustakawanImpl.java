@@ -66,5 +66,11 @@ public class PustakawanImpl implements PustakawanService {
 		PustakawanModel pustakawan = this.getPustakawanById(id);
 		pustakawan.setPenugasanPustakawan(p.getPenugasanPustakawan());
 	}
+	
+	@Override
+	public void deletePenugasan(long id, PustakawanModel p) {
+		PustakawanModel pustakawan = this.getPustakawanById(id);
+		pustakawan.setPenugasanPustakawan(p.getPenugasanPustakawan());
+	}
 
 }

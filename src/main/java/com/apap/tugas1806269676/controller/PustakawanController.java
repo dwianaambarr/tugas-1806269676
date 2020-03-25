@@ -57,7 +57,7 @@ public class PustakawanController {
 		model.addAttribute("navigation", navigation);
 		model.addAttribute("spesialisasi", spesialisasiList);
 		model.addAttribute("pustakawan", new PustakawanModel());
-		return "tambahpustakawan";	
+		return "add-pustakawan";	
 	}
 	
 	@RequestMapping(value = "/pustakawan/tambah", method = RequestMethod.POST, params={"submit"})
@@ -70,7 +70,7 @@ public class PustakawanController {
 			pustakawan.getPustakawanSpesialisasi().add(spesialisasiId.get());
 		}
 		model.addAttribute("navigation", navigation);
-		return "add";
+		return "add-success";
 	} 
 		
 	@RequestMapping(value = "/pustakawan", method = RequestMethod.GET)
@@ -79,7 +79,7 @@ public class PustakawanController {
 		String navigation = "Detail Pustakawan";
 		model.addAttribute("navigation", navigation);
 		model.addAttribute("pustakawan", pustakawan);
-		return "detailpustakawan";
+		return "detail-pustakawan";
 	}
 	
 	
@@ -92,7 +92,7 @@ public class PustakawanController {
 		model.addAttribute("old", old);
 		model.addAttribute("spesialisasi", spesialisasi);
 		model.addAttribute("new", new PustakawanModel());
-		return "updatepustakawan";
+		return "update-pustakawan";
 	}
 	
 	@RequestMapping(value = "/pustakawan/update/{id}", method = RequestMethod.POST)
@@ -103,24 +103,24 @@ public class PustakawanController {
 		String navigation = "Berhasil";
 		model.addAttribute("navigation", navigation);
 		model.addAttribute("pustakawan", pustakawan);
-		return "update";
+		return "update-success";
 	}
 	
 	@RequestMapping(value = "/pustakawan/delete/{id}", method = RequestMethod.GET)
-	private String deletePilot(@PathVariable(value = "id") long id, Model model) {
+	private String deletePustakawan(@PathVariable(value = "id") long id, Model model) {
 			PustakawanModel pustakawan = pustakawanService.getPustakawanById(id);
 			model.addAttribute("pustakawan", pustakawan);
 			String navigation = "Hapus Pustakawan";
 			model.addAttribute("navigation", navigation);
-			return "deletepustakawan";
+			return "delete-pustakawan";
 		}
 	
 	@RequestMapping(value = "/pustakawan/delete/{id}", method = RequestMethod.POST)
-	private String deletePilot1(@PathVariable(value = "id") long id, Model model) {
+	private String delete(@PathVariable(value = "id") long id, Model model) {
 			pustakawanService.deletePustakawan(id);
 			String navigation = "Berhasil";
 			model.addAttribute("navigation", navigation);
-			return "delete";
+			return "delete-success";
 	}
 	
 	@RequestMapping(value = "/cari", method = RequestMethod.GET)
@@ -133,15 +133,27 @@ public class PustakawanController {
 			model.addAttribute("pustakawan", pustakawan);
 			model.addAttribute("perpustakaan", perpustakaanList);
 			model.addAttribute("navigation", navigation);
-			return "caripustakawan";
+			return "search-pustakawan";
 		}
 	
 	@RequestMapping(value = "/statistik", method = RequestMethod.GET)
 	private String statistik(Model model) {
 			List <SpesialisasiModel> spesialisasiList = spesialisasiService.getAllSpesialisasi();
 			List <PustakawanModel> pustakawan = pustakawanService.getAllPustakawan();
+			Optional<SpesialisasiModel> sp1 = spesialisasiService.getSpesialisasiById(1);
+			Optional<SpesialisasiModel> sp2 = spesialisasiService.getSpesialisasiById(2);
+			Optional<SpesialisasiModel> sp3 = spesialisasiService.getSpesialisasiById(3);
+			Optional<SpesialisasiModel> sp4 = spesialisasiService.getSpesialisasiById(4);
+			Optional<SpesialisasiModel> sp5 = spesialisasiService.getSpesialisasiById(5);
+			
+			
 			String navigation = "Statistik";
 			model.addAttribute("spesialisasi", spesialisasiList);
+			model.addAttribute("sp1", spesialisasiList);
+			model.addAttribute("sp2", spesialisasiList);
+			model.addAttribute("sp3", spesialisasiList);
+			model.addAttribute("sp4", spesialisasiList);
+			model.addAttribute("sp5", spesialisasiList);
 			model.addAttribute("pustakawan", pustakawan);
 			model.addAttribute("navigation", navigation);
 			return "statistik";

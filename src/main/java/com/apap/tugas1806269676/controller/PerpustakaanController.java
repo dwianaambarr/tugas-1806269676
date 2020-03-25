@@ -35,7 +35,7 @@ public class PerpustakaanController {
 		String navigation = "Daftar Perpustakaan";
 		model.addAttribute("navigation", navigation);
 		model.addAttribute("perpustakaan", perpustakaan);
-		return "daftarperpustakaan";
+		return "daftar-perpustakaan";
 	}
 	
 	@RequestMapping(value = "/perpustakaan/tambah", method = RequestMethod.GET)
@@ -43,7 +43,7 @@ public class PerpustakaanController {
 		String navigation = "Tambah Perpustakaan";
 		model.addAttribute("navigation", navigation);
 		model.addAttribute("perpustakaan", new PerpustakaanModel());
-		return "tambahperpustakaan";	
+		return "add-perpustakaan";	
 	}
 	
 	@RequestMapping(value = "/perpustakaan/tambah", method = RequestMethod.POST, params={"submit"})
@@ -51,7 +51,7 @@ public class PerpustakaanController {
 		String navigation = "Berhasil";
 		perpustakaanService.addPerpustakaan(perpustakaan);
 		model.addAttribute("navigation", navigation);
-		return "add";
+		return "add-success";
 	}
 	
 	@RequestMapping(value = "/perpustakaan/delete/{id}", method = RequestMethod.GET)
@@ -60,7 +60,7 @@ public class PerpustakaanController {
 			model.addAttribute("perpustakaan", perpustakaan);
 			String navigation = "Hapus Perpustakaan";
 			model.addAttribute("navigation", navigation);
-			return "deleteperpustakaan";
+			return "delete-perpustakaan";
 		}
 	
 	@RequestMapping(value = "/perpustakaan/delete/{id}", method = RequestMethod.POST)
@@ -68,6 +68,6 @@ public class PerpustakaanController {
 			perpustakaanService.deletePerpustakaan(id);
 			String navigation = "Berhasil";
 			model.addAttribute("navigation", navigation);
-			return "delete";
+			return "delete-success";
 		}
 }
