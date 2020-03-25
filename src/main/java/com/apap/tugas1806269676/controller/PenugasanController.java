@@ -1,6 +1,7 @@
 package com.apap.tugas1806269676.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.apap.tugas1806269676.model.PenugasanModel;
 import com.apap.tugas1806269676.model.PerpustakaanModel;
 import com.apap.tugas1806269676.model.PustakawanModel;
-import com.apap.tugas1806269676.model.PenugasanModel;
 import com.apap.tugas1806269676.service.PerpustakaanService;
 import com.apap.tugas1806269676.service.PustakawanService;
 
 /**
- * JadwalController
+ * PenugasanController
+ * 
+ * @author Dwi Ana Ambar Rofiqoh
+ *
  */
+
 @Controller
 public class PenugasanController {
 	@Autowired
@@ -35,7 +39,7 @@ public class PenugasanController {
 		PenugasanModel p = new PenugasanModel();
 		List <PerpustakaanModel> perpustakaanList = perpustakaanService.getAllPerpustakaan();
 		PustakawanModel pustakawan = pustakawanService.getPustakawanByNip(nip);
-//		PustakawanModel pustakawanNiP = pustakawanService.getPustakawanByNip(nip); 
+		Set<PenugasanModel> jadwal = pustakawan.getPenugasanPustakawan();
 		String navigation = "Tambah Jadwal";
 		p.setPustakawan(pustakawan);
 		model.addAttribute("penugasan", p);
@@ -44,6 +48,7 @@ public class PenugasanController {
 		model.addAttribute("hari", penugasan.getHari());
 		model.addAttribute("pustakawan", pustakawan);
 		model.addAttribute("pustakawan_id", pustakawan.getId());
+		model.addAttribute("jadwal", jadwal);
 		model.addAttribute("navigation", navigation);
 		return "jadwaltugas";
 	}

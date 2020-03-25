@@ -137,8 +137,9 @@ public class PustakawanController {
 		}
 	
 	@RequestMapping(value = "/statistik", method = RequestMethod.GET)
-	private String statistik(@ModelAttribute PustakawanModel pustakawan, Model model) {
+	private String statistik(Model model) {
 			List <SpesialisasiModel> spesialisasiList = spesialisasiService.getAllSpesialisasi();
+			List <PustakawanModel> pustakawan = pustakawanService.getAllPustakawan();
 			String navigation = "Statistik";
 			model.addAttribute("spesialisasi", spesialisasiList);
 			model.addAttribute("pustakawan", pustakawan);

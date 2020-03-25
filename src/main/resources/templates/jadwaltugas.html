@@ -70,10 +70,10 @@
 	        </div>        
 	    </div>
        <div class="container">
-
+       <div class="container">
+       <div class="container">
           <br> <br> 
-	    
-	    		<h4 align="center">DAFTAR JADWAL TUGAS</h4>
+	    <h4 align="center">DAFTAR JADWAL TUGAS</h4>
 		<br>
         <div class="row">
             <br> 			
@@ -81,22 +81,19 @@
                       	<table class="table table-striped">
 						<thead class="thead-dark">
 						<tr>
-							<th width="2%" style="text-align: center">No</th>
-							<th width="30%" style="text-align: center">Nama Perpustakaan</th>
-							<th width="20%" style="text-align: center">Hari</th>
-							<th width="1%"style="text-align: center">Action</th>
+							<th width="10%" style="text-align: center">No</th>
+							<th width="40%" style="text-align: center">Nama Perpustakaan</th>
+							<th width="15%" style="text-align: center">Hari</th>
+							<th width="20%"style="text-align: center">Action</th>
 						</tr>
 						</thead>
 						
 					 	<tbody>
-							<tr th:each="p, i : *{pustakawan}">
+							<tr th:each="jadwal, i : *{jadwal}">
 								<td align=Center th:text="${i.count}"></td>
-								<td>
-								</td>
-								<td>
-									<span th:each="tugas, i : *{p.penugasanPustakawan}">
-									<span th:text="${tugas.hari}"></span></span>
-								<td style="padding: 10px;">
+								<td th:text="${jadwal.perpustakaan.nama}"></td>
+								<td th:text="${jadwal.hari}"></td>
+								<td align=Center style="padding: 10px;">
 								<a th:href="@{'/jadwal/delete/' + ${pustakawan_id}}">
 								<input type="button" class="btn btn-danger" value = "Hapus"></a>
 								</td>
@@ -105,6 +102,7 @@
 					</table>
 					<br>
 					<br>
+					</div>
       			</div>
         	</div>
         </div>

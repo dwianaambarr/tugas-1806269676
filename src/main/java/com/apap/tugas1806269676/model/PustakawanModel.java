@@ -4,9 +4,11 @@ package com.apap.tugas1806269676.model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
@@ -170,14 +172,4 @@ import com.apap.tugas1806269676.model.PenugasanModel;
 		    result = PRIME * result + (int) getId();
 		    return result;
 		}
-		
-//		public int count1 () {
-//			int count = 0;
-//			for (int i=0; i<getPenugasanPustakawan().size(); i++) {
-//				if(getPenugasanPustakawan().getClass().
-//			}
-//			count +=1;
-//			return 
-//		}
-
 }
